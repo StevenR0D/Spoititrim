@@ -1,0 +1,122 @@
+* {
+  box-sizing: border-box;
+}
+
+.app {
+  padding: 24px;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+section {
+  background: #181818;
+  border-radius: 10px;
+  padding: 18px 20px;
+  margin-bottom: 20px;
+}
+
+h1 {
+  font-size: 22px;
+}
+
+h2 {
+  font-size: 16px;
+  margin-top: 0;
+  color: #b3b3b3;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+button {
+  background: #1db954;
+  color: #000;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 18px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+button:disabled {
+  background: #535353;
+  color: #b3b3b3;
+  cursor: not-allowed;
+}
+
+input[type="text"], input[type="number"] {
+  background: #2a2a2a;
+  border: 1px solid #3e3e3e;
+  color: #fff;
+  border-radius: 6px;
+  padding: 8px 10px;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.muted {
+  color: #b3b3b3;
+  font-size: 13px;
+}
+
+.spotify-search input {
+  margin-bottom: 0;
+}
+
+.spotify-tracks {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+button.delete-trim:not(:disabled) {
+  background: #2a2a2a;
+  color: #ff9696;
+}
+
+.spotify-track {
+  padding: 12px 0;
+  border-bottom: 1px solid #303030;
+}
+
+.spotify-track:last-child {
+  border-bottom: none;
+}
+
+.spotify-track-info {
+  flex: 1;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.spotify-track button, .spotify-search button {
+  flex-shrink: 0;
+}
+
+.trim-editor {
+  margin-top: 18px;
+  padding-top: 12px;
+  border-top: 1px solid #3e3e3e;
+}
+
+.trim-editor label {
+  flex: 1;
+  min-width: 0;
+  color: #b3b3b3;
+  font-size: 13px;
+}
+
+.trim-editor input {
+  margin-top: 6px;
+}
+
+@media (max-width: 480px) {
+  .spotify-search, .spotify-track {
+    flex-wrap: wrap;
+  }
+}
