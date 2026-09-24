@@ -41,32 +41,7 @@ db.exec(`
   );
 `);
 
-// --- trim points (Project A) ---
-function upsertTrimPoint(spotifyTrackId, trackName, startMs, endMs) {
-  db.prepare(
-    `INSERT INTO trim_points (spotify_track_id, track_name, start_ms, end_ms)
-     VALUES (?, ?, ?, ?)
-     ON CONFLICT(spotify_track_id) DO UPDATE SET
-       track_name = excluded.track_name,
-       start_ms = excluded.start_ms,
-       end_ms = excluded.end_ms,
-       updated_at = CURRENT_TIMESTAMP`
-  ).run(spotifyTrackId, trackName, startMs, endMs);
-}
-
-function getTrimPoint(spotifyTrackId) {
-  return db
-    .prepare(`SELECT * FROM trim_points WHERE spotify_track_id = ?`)
-    .get(spotifyTrackId);
-}
-
-function getAllTrimPoints() {
-  return db.prepare(`SELECT * FROM trim_points`).all();
-}
-
-function deleteTrimPoint(spotifyTrackId) {
-  db.prepare(`DELETE FROM trim_points WHERE spotify_track_id = ?`).run(spotifyTrackId);
-}
+const accountTrims = require("./account-trims").createAccountTrims(db);
 
 // --- local tracks (Project B) ---
 function insertLocalTrack({ title, youtubeUrl, archivePath, localFilesPath, startMs, endMs }) {
@@ -103,10 +78,7 @@ function getSetting(key) {
 }
 
 module.exports = {
-  upsertTrimPoint,
-  getTrimPoint,
-  getAllTrimPoints,
-  deleteTrimPoint,
+  ...accountTrims,
   insertLocalTrack,
   updateLocalTrackTrim,
   getAllLocalTracks,
